@@ -10,14 +10,12 @@ router.get("/", async (req, res, next) => {
     const dogs = await Dogs.findAll();
     res.json(dogs);
   } catch (err) {
-    res.status(500).json({
-      message: "Error retriecing dogs",
-    });
+    next(err);
   }
 });
 
 // Route to get a dog by ID
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const dog = await Dogs.findById(id);
@@ -28,26 +26,22 @@ router.get("/:id", async (req, res) => {
     }
     res.json(dog);
   } catch (err) {
-    res.status(500).json({
-      message: "Error retrieving dog",
-    });
+    next(err);
   }
 });
 
 // Route to create a new dog
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
   try {
     const newDog = await Dogs.create(req.body);
     res.status(201).json(newDog);
   } catch (err) {
-    res.status(500).json({
-      message: "Error creating dog",
-    });
+    next(err);
   }
 });
 
 // Route to update a dog by ID
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const updatedDog = await Dogs.update(id, req.body);
@@ -58,14 +52,12 @@ router.put("/:id", async (req, res) => {
     }
     res.json(updatedDog);
   } catch (err) {
-    res.status(500).json({
-      message: "Error updating dog",
-    });
+    next(err);
   }
 });
 
 // Route to delete a dog by ID
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const deletedDog = await Dogs.delete(id);
@@ -76,9 +68,7 @@ router.delete("/:id", async (req, res) => {
     }
     res.json(deletedDog);
   } catch (err) {
-    res.status(500).json({
-      message: "Error deleting dog",
-    });
+    next(err);
   }
 });
 

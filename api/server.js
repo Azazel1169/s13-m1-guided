@@ -1,16 +1,16 @@
 // IMPORTS AT THE TOP
-const express = require('express')
-const morgan = require('morgan')
+const express = require("express");
+const morgan = require("morgan");
 // INSTANCE OF EXPRESS APP
-const dogRoutes = require('./dog-routes')
+const dogRoutes = require("./dog-routes");
 
-const server = express()
+const server = express();
 // GLOBAL MIDDLEWARE
-server.use(express.json())
-server.use(morgan('dev'))
+server.use(express.json());
+server.use(morgan("dev"));
 // ENDPOINTS
 
-server.use('/api/dogs', dogRoutes)
+server.use("/api/dogs", dogRoutes);
 
 // [GET]    /             (Hello World endpoint)
 // [GET]    /api/dogs     (R of CRUD, fetch all dogs)
@@ -19,5 +19,11 @@ server.use('/api/dogs', dogRoutes)
 // [PUT]    /api/dogs/:id (U of CRUD, update dog with :id using JSON payload)
 // [DELETE] /api/dogs/:id (D of CRUD, remove dog with :id)
 
+server.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    message: err.message || "Internal Server Error",
+  });
+});
 // EXPOSING THE SERVER TO OTHER MODULES
-module.exports = server
+module.exports = server;
