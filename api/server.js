@@ -2,11 +2,15 @@
 const express = require('express')
 const morgan = require('morgan')
 // INSTANCE OF EXPRESS APP
+const dogRoutes = require('./dog-routes')
+
 const server = express()
 // GLOBAL MIDDLEWARE
 server.use(express.json())
 server.use(morgan('dev'))
 // ENDPOINTS
+
+server.use('/api/dogs', dogRoutes)
 
 // [GET]    /             (Hello World endpoint)
 // [GET]    /api/dogs     (R of CRUD, fetch all dogs)
