@@ -64,4 +64,22 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// Route to delete a dog by ID
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedDog = await Dogs.delete(id);
+    if (!deletedDog) {
+      res.status(404).json({
+        message: "Dog not found",
+      });
+    }
+    res.json(deletedDog);
+  } catch (err) {
+    res.status(500).json({
+      message: "Error deleting dog",
+    });
+  }
+});
+
 module.exports = router;
