@@ -1,0 +1,29 @@
+{
+  "name": "s13-m1-guided",
+  "version": "1.0.0",
+  "description": "Guided project for **Node API 1** Module.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azazel1169/s13-m1-guided.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Azazel1169/s13-m1-guided/issues"
+  },
+  "homepage": "https://github.com/Azazel1169/s13-m1-guided#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.9"
+  }
+}

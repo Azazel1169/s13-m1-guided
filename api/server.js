@@ -1,9 +1,11 @@
 // IMPORTS AT THE TOP
-
+const express = require('express')
+const morgan = require('morgan')
 // INSTANCE OF EXPRESS APP
-
+const server = express()
 // GLOBAL MIDDLEWARE
-
+server.use(express.json())
+server.use(morgan('dev'))
 // ENDPOINTS
 
 // [GET]    /             (Hello World endpoint)
@@ -14,3 +16,4 @@
 // [DELETE] /api/dogs/:id (D of CRUD, remove dog with :id)
 
 // EXPOSING THE SERVER TO OTHER MODULES
+module.exports = server
